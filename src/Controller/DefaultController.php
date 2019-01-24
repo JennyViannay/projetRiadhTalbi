@@ -7,18 +7,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-class HomeController extends AbstractController {
-
+class DefaultController extends AbstractController
+{
     /**
-     * @Route("/", name="home")
-     * @return Response
+     * @Route("/login")
      */
-
-    public function index(): Response
+    public function admin(): Response
     {
-
-      return $this->render('pages/home.html.twig');
-
+        return new Response('<html><body>Admin page!</body></html>');
     }
-
 }
