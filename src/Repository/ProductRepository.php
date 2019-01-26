@@ -32,7 +32,20 @@ class ProductRepository extends ServiceEntityRepository
 
     }
 
+    /**
+     * @param $array
+     * @return Product[]
+     */
+    public function findArray($array): array
+    {
 
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.id IN (:array)')
+            ->setParameter('array', $array)
+            ->getQuery()
+            ->getResult();
+
+    }
 
     // /**
     //  * @return Product[] Returns an array of Product objects

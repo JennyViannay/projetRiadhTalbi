@@ -3,13 +3,12 @@
 {% block title product.nom  %}
 
 {% block body %}
-    <div class="container mt-3">
+    <div class="container mt-3" style="border-style: groove;background-color: white">
         <div class="row justify-content-between">
-            <div class="col-md-4">
-
-
+            <div class="col-md-2">
+    <img  class="image-style" src="{{ asset("images/") ~ product.nom }}.jpg" height="200" alt="{{ product.nom }}" />
             </div>
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <h3>{{ product.nom }}</h3>
                 <h5>Carateristiques:</h5>
                 <p>{{ product.description  | nl2br  }}</p>
@@ -22,13 +21,13 @@
                             {{ product.formatPrice }} €
                         </h5>
                         <p class="card-text">
-                        Quantité <input type="number" style="width: 30%" max="99" min="1" name="qte"/>
+                            <form action="{{ path('panier.ajout', {'id': product.id}) }}" method="get">
+                        Quantité <input  type="number" style="width: 30%" max="99" min="1" name="qte"/>
                         </p>
                         <p class="card-text">
-                            <a href="#" class="btn btn-info btn-lg">
-                                 Panier
-                            </a>
+                            <button class="btn btn-success btn-lg" >Au panier!</button>
                         </p>
+                        </form>
                     </div>
                 </div>
             </div>
