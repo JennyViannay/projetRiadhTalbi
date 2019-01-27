@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Repository\ProductRepository;
 use Doctrine\Common\Persistence\ObjectManager;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -31,13 +33,17 @@ class ProductController extends AbstractController {
      * @Route("/produits", name="product.index" )
      * @return Response
      */
-    public function index():Response
+    public function index(PaginatorInterface $paginator, Request $request):Response
     {
-      //$product = $this->repository->findBy([], ['nom' => 'ASC']); on peu faire ça pour le trie mais on prefere DI
-        $product = $this->repository->findAllByNameAsc();
+      $product = $paginator->paginate(
+          $this->repository->findAllByNameAscQuery(),
+          $request->query->getInt('page', 1),
+          4
+          );
+
       return $this->render('product/index.html.twig',[
           "Current_menu" => "products",
-          "products" => $product
+          "products" => $product,
       ]);
 
     }

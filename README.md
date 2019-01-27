@@ -18,6 +18,25 @@
 
 ### Installation
 
+Si vous voulez utiliser un conteneur il faudra installer Docker (Community Edition).
+
+```sh
+cd projetRiadhTalbi
+docker-compose up -d
+```
+Avec la commande vous aurez les identifiants du conteneur
+
+```sh
+docker ps
+```
+
+Vous pouvez installer le nouveau framework Symfony avec la commande
+
+```sh
+docker exec id_du_conteneur composer create-project symfony/website-skeleton catalogue
+```
+La methode decrite si-dessus vous donne tout ce qui est necessaire pour faire tourner votre application web sinon proceder comme suit :
+
 Pour créer application catalogue, assurez-vous d’abord que vous utilisez PHP 7.1 ou supérieur et que [composer](https://getcomposer.org/download/) est installé. Sinon, commencez par installer [Composer globalement](https://symfony.com/doc/current/setup/composer.html) sur votre système.
 Créez votre nouveau projet en exécutant:
 

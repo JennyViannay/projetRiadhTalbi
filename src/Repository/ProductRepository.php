@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -20,15 +22,14 @@ class ProductRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return Product[]
+     * @return Query
      */
-    public function findAllByNameAsc(): array
+    public function findAllByNameAscQuery(): Query
     {
 
-        return $this->createQueryBuilder('p')
-            ->orderBy('p.nom', 'ASC')
-            ->getQuery()
-            ->getResult();
+        return $this->findByNameAscQuery()
+            ->getQuery();
+
 
     }
 
@@ -39,11 +40,23 @@ class ProductRepository extends ServiceEntityRepository
     public function findArray($array): array
     {
 
-        return $this->createQueryBuilder('p')
+        return $this->findByNameAscQuery()
             ->andWhere('p.id IN (:array)')
             ->setParameter('array', $array)
             ->getQuery()
             ->getResult();
+
+    }
+
+    /**
+     * @return QueryBuilder
+     */
+    private function findByNameAscQuery(): QueryBuilder
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.nom', 'ASC');
+
+
 
     }
 
