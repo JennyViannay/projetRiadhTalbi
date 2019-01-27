@@ -21,7 +21,7 @@
 Si vous voulez utiliser un conteneur il faudra installer Docker (Community Edition).
 
 ```sh
-cd projetRiadhTalbi
+cd projetRiadhTalbi\docker-install-symfony
 docker-compose up -d
 ```
 Avec la commande vous aurez les identifiants du conteneur
