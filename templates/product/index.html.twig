@@ -5,6 +5,9 @@
 {% block body %}
     <div class="container mt-4">
         <h3>Catalogue de Produits</h3>
+        <p class="card-text">
+            <a class="btn btn-primary" role="button"  href="{{ path('product.export') }}">Exporter Les produit CSV</a>
+        </p>
     <div class="row flex">
             {% for product in products %}
                 {% include('product/produit.html.twig') %}
